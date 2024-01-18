@@ -20,10 +20,10 @@ pipeline{
                 script{
                     build job: 'JenkinsFile_Presentation', parameters: [
                         string(name: 'nombre', value:"${params.nombre}"),
-                        string(name: 'apellido', values:"${params.apellido}"),
-                        booleanParam(name: 'isPeronist?', values:"${isPeronist?}"),
-                        choice(name: 'Pais', values:"${params.Pais}"),
-                        choice(name: 'Genero', values:"${params.Genero}")
+                        string(name: 'apellido', value:"${params.apellido}"),
+                        booleanParam(name: 'isPeronist?', value:"${isPeronist}"),
+                        choice(name: 'Pais', value:"${params.Pais}"),
+                        choice(name: 'Genero', value:"${params.Genero}")
                     ]
                 }
             }
