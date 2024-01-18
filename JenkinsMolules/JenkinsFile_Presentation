@@ -1,7 +1,7 @@
 pipeline{
     agent any
     stages{
-        stage('Presnetacion'){
+        stage('Presentacion'){
             steps{
                 sh "echo 'Hola mundo'"
                 sh "echo 'En este pipeline se pone en practica el uso de credenciales y molularizacion de jenkins file'"
