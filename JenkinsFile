@@ -1,0 +1,62 @@
+pipeline {
+    agent any
+    
+    parameters{
+        string(name:'Nombre', description:'Ingrese el nombre')
+        string(name:'Apellido', description:'Ingrese el apellido')
+        booleanParam(name:'isPeronist?', description: 'Ingrese si sos peronista')
+        choice(name: 'Paises', choices:['Argentina','Chile','Peru','Uruguay','Paraguay'], description:'Ingrese tu pais')
+    }
+    stages{
+        stage("Presentacion"){
+            steps{
+                echo "hola mundo"
+                echo "En este pipeline se pone a prueba el uso de credenciales"
+                
+            }
+        }
+        stage("Formulario"){
+            steps{
+                echo "${params.Nombre}"
+                echo "${params.Apellido}"
+                echo "${params.isPeronist}"
+                echo "${params.Pais}"
+            }
+        }
+        stage("Imprimir credenciales"){
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId:'githubMaster',
+                        usernameVariable : 'USER_NAME',
+                        passwordVariable : 'USER_PASSWORD'
+                    )]){
+                    
+                    script {
+                        echo "El nombre de usuario es: $USER_NAME"
+                        echo "Contraseña: $USER_PASSWORD"
+                    }
+                }
+                withCredentials([
+                    string(
+                         credentialsId : 'SECRET_TEXT' ,
+                         variable : 'TEXTO'
+                    )]) {
+                    script {
+                        echo "$TEXTO"
+                    }
+                }
+                withCredentials([usernamePassword(
+                    credentialsId : 'BautistaDev',
+                    passwordVariable : 'Bautista_Password',
+                    usernameVariable : 'Bautista_Username'
+                    )]){
+                    script {
+                        echo "Nombre de usuario: $Bautista_Username"
+                        echo "Password: $Bautista_Password"
+                    }
+                }
+            }
+        }
+    }
+}
