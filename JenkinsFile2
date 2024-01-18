@@ -10,12 +10,14 @@ pipeline{
     }
 
     stages{
-        stage("Disparador"){
+        stage("Presentacion"){
             steps{
                 script{
                     build job: 'JenkinsFile_Presentation'
                 }
             }
+        }
+        stage("Formulario"){
             steps{
                 script{
                     build job: 'JenkinsFile_Presentation', parameters: [
