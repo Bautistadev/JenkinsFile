@@ -1,0 +1,32 @@
+pipeline{
+    agent any
+
+     parameters{
+        string(name: 'nombre', description: 'INGRESE EL NOMBRE')
+        string(name: 'apellido', description: 'INGRESE EL APELLIDO')
+        booleanParam(name: 'isPeronist?', description: 'Ingrese si sos peronista')
+        choice(name: 'Pais', choices:['Agentina','Peru','Uruguay','Paraguay','Chile','Colombia','Mexico'], description: 'Ingrese tu pais perteneciente, que se encuentre en la lista')
+        choice(name: 'Genero', choices:['Hombre','Mujer'], description: 'Ingresa tu genero')
+    }
+
+    stages{
+        stage('Disparador'){
+            steps{
+                script{
+                    build job: 'JenkinsFile_Presentation'
+                }
+            }
+            steps{
+                script{
+                    build job: 'JenkinsFile_Presentation', parameters: [
+                        string(name: 'nombre', value:"${params.nombre}")
+                        string(name: 'apellido', values:"${params.apellido}")
+                        booleanParam(name: 'isPeronist?', values:"${isPeronist?}")
+                        choice(name: 'Pais', values:"${params.Pais}")
+                        choice(name: 'Genero', values:"${params.Genero}")
+                    ]
+                }
+            }
+        }
+    }
+}
