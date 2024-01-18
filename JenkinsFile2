@@ -10,7 +10,7 @@ pipeline{
     }
 
     stages{
-        stage('Disparador'){
+        stage("Disparador"){
             steps{
                 script{
                     build job: 'JenkinsFile_Presentation'
