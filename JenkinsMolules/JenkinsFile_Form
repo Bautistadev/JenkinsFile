@@ -3,7 +3,7 @@ pipeline{
     parameters{
         string(name: 'nombre', description: 'INGRESE EL NOMBRE')
         string(name: 'apellido', description: 'INGRESE EL APELLIDO')
-        booleanParam(name: 'isPeronist?', description: 'Ingrese si sos peronista')
+        booleanParam(name: 'isPeronist', description: 'Ingrese si sos peronista')
         choice(name: 'Pais', choices:['Agentina','Peru','Uruguay','Paraguay','Chile','Colombia','Mexico'], description: 'Ingrese tu pais perteneciente, que se encuentre en la lista')
         choice(name: 'Genero', choices:['Hombre','Mujer'], description: 'Ingresa tu genero')
     }
@@ -12,7 +12,7 @@ pipeline{
             steps{
                 echo "${params.nombre}"
                 echo "${params.apellido}"
-                echo "${params.isPeronist?}"
+                echo "${params.isPeronist}"
                 echo "${params.Pais}"
                 echo "${params.Genero}"
             }
