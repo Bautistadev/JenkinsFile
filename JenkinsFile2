@@ -23,7 +23,7 @@ pipeline{
                     build job: 'JenkinsFile_Presentation', parameters: [
                         string(name: 'nombre', value:"${params.nombre}"),
                         string(name: 'apellido', value:"${params.apellido}"),
-                        booleanParam(name: 'isPeronist', value:"${params.isPeronist}"),
+                        string(name: 'isPeronist', value:"${params.isPeronist}"),
                         choice(name: 'Pais', value:"${params.Pais}"),
                         choice(name: 'Genero', value:"${params.Genero}")
                     ]
