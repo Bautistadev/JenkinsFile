@@ -6,6 +6,7 @@ pipeline {
         string(name:'Apellido', description:'Ingrese el apellido')
         booleanParam(name:'isPeronist?', description: 'Ingrese si sos peronista')
         choice(name: 'Paises', choices:['Argentina','Chile','Peru','Uruguay','Paraguay'], description:'Ingrese tu pais')
+        choice(name: 'Genero', choices:['Hombre','Mujer'], description: 'Ingrese el genero')
     }
     stages{
         stage("Presentacion"){
@@ -21,10 +22,12 @@ pipeline {
                 echo "${params.Apellido}"
                 echo "${params.isPeronist}"
                 echo "${params.Pais}"
+                echo "${params.Genero}"
             }
         }
         stage("Imprimir credenciales"){
             steps {
+                /*Ingresamos las credenciales*/
                 withCredentials([
                     usernamePassword(
                         credentialsId:'githubMaster',
